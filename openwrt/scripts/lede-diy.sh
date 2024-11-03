@@ -1010,4 +1010,8 @@ pushd feeds/luci
 wget -qO- https://github.com/openwrt/luci/commit/0b5fb915.patch | patch -p1
 popd
 
+#删除lean大佬的旧版本
+rm -rf ./feeds/packages/net/miniupnpc
+merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpc
+
 ##########################################################################
