@@ -1001,14 +1001,14 @@ merge_package master https://github.com/openwrt/packages.git package/new net/v2r
 #sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/60f5705.patch
 #wget https://github.com/miniupnp/miniupnp/commit/3f3582b.patch -O feeds/packages/net/miniupnpd/patches/3f3582b.patch
 #sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/3f3582b.patch
-pushd feeds/packages
-patch -p1 <../.././diydata/data/patches/miniupnpd/01-set-presentation_url.patch
-patch -p1 <../.././diydata/data/patches/miniupnpd/02-force_forwarding.patch
-patch -p1 <../.././diydata/data/patches/miniupnpd/301-options-force_forwarding-support.patch
-popd
-pushd feeds/luci
-wget -qO- https://github.com/openwrt/luci/commit/0b5fb915.patch | patch -p1
-popd
+#pushd feeds/packages
+#patch -p1 <../.././diydata/data/patches/miniupnpd/01-set-presentation_url.patch
+#patch -p1 <../.././diydata/data/patches/miniupnpd/02-force_forwarding.patch
+#patch -p1 <../.././diydata/data/patches/miniupnpd/301-options-force_forwarding-support.patch
+#popd
+#pushd feeds/luci
+#wget -qO- https://github.com/openwrt/luci/commit/0b5fb915.patch | patch -p1
+#popd
 
 #删除lean大佬的旧版本
 #rm -rf ./feeds/packages/net/miniupnpc
