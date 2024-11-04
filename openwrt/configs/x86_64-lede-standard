@@ -629,7 +629,7 @@ CONFIG_DOCKER_STO_BTRFS=y
 CONFIG_DOCKER_STO_EXT4=y
 
 #石像鬼qos
-CONFIG_PACKAGE_luci-app-qos-gargoyle=y
+CONFIG_PACKAGE_luci-app-qos-gargoyle=n  #编译不成功
 
 #========自定义app结束=======================
 
