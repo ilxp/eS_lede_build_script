@@ -466,7 +466,7 @@ git clone https://github.com/sirpdboy/luci-app-advanced.git package/diy/luci-app
 
 ##五）QOS相关
 #石像鬼qos采用我自己的，会有一个QOS栏目生成
-git clone -b openwrt-2305 https://github.com/ilxp/gargoyle-qos-openwrt.git  package/diy/gargoyle-qos-openwrt #官方qos-gargoyle 在lede上无法安装成功。
+#git clone -b openwrt-2305 https://github.com/ilxp/gargoyle-qos-openwrt.git  package/diy/gargoyle-qos-openwrt #官方qos-gargoyle 在lede上无法安装成功。
 
 #2）eqos，采用luci自带的即可。把eqos放在管控下。不在列入Qos目录下
 #rm -rf feeds/luci/applications/luci-app-eqos #lean库里没有eqos
