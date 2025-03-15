@@ -596,11 +596,11 @@ merge_package main https://github.com/Lienol/openwrt-package.git package/new luc
 
 #采用我自己的control
 git clone -b main --depth 1 https://github.com/ilxp/openwrt-control  package/diy/openwrt-control
-sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-webrestriction/luasrc/controller/webrestriction.lua
-sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-weburl/luasrc/controller/weburl.lua
-sed -i 's/Internet Time Control/上网时间控制/g' package/diy/openwrt-control/luci-app-timecontrol/luasrc/controller/timecontrol.lua
-sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-timecontrol/luasrc/controller/timecontrol.lua
-sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-timewol/luasrc/controller/timewol.lua
+#sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-webrestriction/luasrc/controller/webrestriction.lua
+#sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-weburl/luasrc/controller/weburl.lua
+#sed -i 's/Internet Time Control/上网时间控制/g' package/diy/openwrt-control/luci-app-timecontrol/luasrc/controller/timecontrol.lua
+#sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-timecontrol/luasrc/controller/timecontrol.lua
+#sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-timewol/luasrc/controller/timewol.lua
 
 #zxlhhyccc大佬的 修复无法运行问题。
 #时间控制accesscontrol,timecontrol网络唤醒wolplus，访问限制webrestriction， 过滤控制weburl
@@ -645,7 +645,7 @@ sed -i 's/Control/管控/g' package/diy/openwrt-control/luci-app-control-timewol
 #git clone --depth 1 https://github.com/jerrykuku/luci-app-jd-dailybonus.git package/new/luci-app-jd-dailybonus
 
 #3、网易云音乐解锁 js
-rm -rf feeds/applications/luci-app-unblockmusic
+rm -rf feeds/luci/applications/luci-app-unblockmusic
 rm -rf package/new/luci-app-unblockneteasemusic
 git clone -b js https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic package/new/luci-app-unblockneteasemusic
 sed -i 's/解除网易云音乐播放限制/网易云音乐解锁/g' package/new/luci-app-unblockneteasemusic/root/usr/share/luci/menu.d/luci-app-unblockneteasemusic.json

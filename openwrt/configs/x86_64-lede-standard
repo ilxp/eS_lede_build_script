@@ -465,11 +465,11 @@ CONFIG_PACKAGE_luci-app-dnsfilter=n
 
 #二、管控
 CONFIG_PACKAGE_luci-app-control-webrestriction=y  #访问限制：用黑名单或者白名单模式控制列表中的客户端是否能够连接到互联网
-CONFIG_PACKAGE_luci-app-control-weburl=y  #家长控制包含
-CONFIG_PACKAGE_luci-app-timecontrol=y  #lean上可用
+CONFIG_PACKAGE_luci-app-control-weburl=n  #家长控制包含
+CONFIG_PACKAGE_luci-app-timecontrol=n   #家长控制包含
 CONFIG_PACKAGE_luci-app-accesscontrol=n  #显示收集信息，控制无效
-CONFIG_PACKAGE_luci-app-control-timewol=y #无法运行
-CONFIG_PACKAGE_luci-app-wolplus=n
+CONFIG_PACKAGE_luci-app-control-timewol=n #采用woplus
+CONFIG_PACKAGE_luci-app-wolplus=y
 
 
 #应用过滤
@@ -555,7 +555,7 @@ CONFIG_PACKAGE_luci-app-diskman=n
 #turboacc加速
 #lean版本
 CONFIG_PACKAGE_luci-app-turboacc=y
-CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=n
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE=y
 CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM=y
 
