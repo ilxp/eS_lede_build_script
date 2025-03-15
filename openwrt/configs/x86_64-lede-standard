@@ -17,7 +17,7 @@ CONFIG_TARGET_ROOTFS_PARTSIZE=900
 CONFIG_TARGET_IMAGES_GZIP=y
 
 # 编译常规以及UEFI、EXT4固件:
-CONFIG_GRUB_IMAGES=y  #在线升级需要编译
+CONFIG_GRUB_IMAGES=y
 CONFIG_GRUB_EFI_IMAGES=y
 
 # rootfs tar.gz
@@ -30,6 +30,10 @@ CONFIG_QCOW2_IMAGES=n
 
 # 编译VMware镜像
 CONFIG_VMDK_IMAGES=n
+
+### Basic
+CONFIG_ALL_KMODS=y
+CONFIG_ALL_NONSHARED=y
 
 # Extra Packages
 CONFIG_PACKAGE_diffutils=y
@@ -129,7 +133,7 @@ CONFIG_PACKAGE_luci-proto-3g=y
 
 #USB net driver
 CONFIG_DEFAULT_kmod-usb-net=y
-CONFIG_PACKAGE_kmod-usb-net-asix=y
+CONFIG_PACKAGE_kmod-usb-net-asix=y  #6.12内核编译不成功
 CONFIG_PACKAGE_kmod-usb-net-asix-ax88179=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8150=y
 CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
@@ -159,9 +163,9 @@ CONFIG_PACKAGE_kmod-fs-ext4=y
 CONFIG_PACKAGE_kmod-fs-ntfs3=y
 
 #ntfs3驱动
-CONFIG_PACKAGE_kmod-fs-ntfs3=n
-CONFIG_PACKAGE_ntfs-3g=y
-CONFIG_PACKAGE_ntfs-3g-utils=y
+CONFIG_PACKAGE_kmod-fs-ntfs3=y
+CONFIG_PACKAGE_kmod-ntfs-3g=y
+CONFIG_PACKAGE_kmod-ntfs-3g-utils=y
 
 ## I2C Drivers
 CONFIG_PACKAGE_kmod-i2c-core=y
@@ -443,6 +447,11 @@ CONFIG_PACKAGE_luci-app-zerotier=n
 
 #================自定义app=========================
 #一、去广告相关
+### BBRv3 ###
+CONFIG_PACKAGE_kmod-tcp-bbr=n
+CONFIG_PACKAGE_kmod-tcp-bbr3=y
+CONFIG_PACKAGE_kmod-tcp-brutal=y
+
 #1）adhome（采用kiddin9的带二进制）
 CONFIG_PACKAGE_luci-app-adguardhome=n
 CONFIG_PACKAGE_luci-app-adguardhome_INCLUDE_binary=n  #导致编译时间太长
@@ -455,18 +464,20 @@ CONFIG_PACKAGE_libustream-openssl=n #选择导致编译不成功
 CONFIG_PACKAGE_luci-app-dnsfilter=n
 
 #二、管控
-CONFIG_PACKAGE_luci-app-control-webrestriction=y
-CONFIG_PACKAGE_luci-app-control-weburl=y
-CONFIG_PACKAGE_luci-app-timecontrol=y
-CONFIG_PACKAGE_luci-app-control-timewol=n #无法运行
-CONFIG_PACKAGE_luci-app-wolplus=y
+CONFIG_PACKAGE_luci-app-control-webrestriction=y  #访问限制：用黑名单或者白名单模式控制列表中的客户端是否能够连接到互联网
+CONFIG_PACKAGE_luci-app-control-weburl=y  #家长控制包含
+CONFIG_PACKAGE_luci-app-timecontrol=y  #lean上可用
+CONFIG_PACKAGE_luci-app-accesscontrol=n  #显示收集信息，控制无效
+CONFIG_PACKAGE_luci-app-control-timewol=y #无法运行
+CONFIG_PACKAGE_luci-app-wolplus=n
+
 
 #应用过滤
-CONFIG_PACKAGE_luci-app-oaf=n  #6.6内核编译不成功
-CONFIG_PACKAGE_kmod-oaf=n
+CONFIG_PACKAGE_luci-app-oaf=y
+CONFIG_PACKAGE_kmod-oaf=y
 
 #sirpdboy大神重启计划等插件
-CONFIG_PACKAGE_luci-app-parentcontrol=n   #家长控制  无法运行
+CONFIG_PACKAGE_luci-app-parentcontrol=y   #家长控制（包含时间，端口，）
 CONFIG_PACKAGE_luci-app-lucky=n #反向代理
 CONFIG_PACKAGE_luci-app-ddns-go=y  #反向代理
 CONFIG_PACKAGE_luci-app-poweroffdevice=n #编译不成功，采用另一个
@@ -544,6 +555,9 @@ CONFIG_PACKAGE_luci-app-diskman=n
 #turboacc加速
 #lean版本
 CONFIG_PACKAGE_luci-app-turboacc=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_OFFLOADING=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE=y
+CONFIG_PACKAGE_luci-app-turboacc_INCLUDE_SHORTCUT_FE_CM=y
 
 #迅雷加速
 CONFIG_PACKAGE_luci-app-xlnetacc=n
@@ -587,6 +601,10 @@ CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-app-minidlna=n
 CONFIG_PACKAGE_luci-app-ksmbd=n
+
+
+#挂载局域网硬盘
+CONFIG_PACKAGE_kmod-fs-cifs=y
 
 #京东签到
 CONFIG_PACKAGE_luci-app-jd-dailybonus=n
@@ -711,9 +729,11 @@ CONFIG_PACKAGE_kmod-drm-i915=y
 # end of Video Support
 
 ### Utilities--pve平台
-CONFIG_PACKAGE_qemu-ga=y
+CONFIG_PACKAGE_qemu-ga=n  #已经由open-vm-tools提供
 CONFIG_PACKAGE_acpid=y
 
-### Virtualization
+### virtualization
+CONFIG_PACKAGE_kmod-kvm-amd=y
 CONFIG_PACKAGE_kmod-kvm-intel=y
 CONFIG_PACKAGE_kmod-kvm-x86=y
+CONFIG_PACKAGE_open-vm-tools=y 
