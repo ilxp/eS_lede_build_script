@@ -115,16 +115,16 @@ merge_package main https://github.com/openwrt/openwrt.git package/devel package/
 
 #四、系统优化########
 # BBRv3  已经在yaof里面 
-cp -rf ./diydata/data/bbr3-yaof6.6/* ./target/linux/generic/backport-6.6/
+#cp -rf ./diydata/data/bbr3-yaof6.6/* ./target/linux/generic/backport-6.6/
 #cp -rf ./diydata/data/bbr3-yaof6.6/* ./target/linux/generic/backport-6.12/
 #修改turboacc的依赖 bbr为bbr3
-sed -i 's/kmod-tcp-bbr/kmod-tcp-bbr3/g' feeds/luci/applications/luci-app-turboacc/Makefile
+#sed -i 's/kmod-tcp-bbr/kmod-tcp-bbr3/g' feeds/luci/applications/luci-app-turboacc/Makefile
 
 # Modules  （package/kernel/linux/modules）
 rm -rf package/kernel/linux/modules/hwmon.mk #修改CONFIG_ALL_KMODS
-rm -rf package/kernel/linux/modules/netsupport.mk   #tcp-bbr为tcp-bbr3
+#rm -rf package/kernel/linux/modules/netsupport.mk   #tcp-bbr为tcp-bbr3
 cp -rf ./diydata/data/modules-lede/hwmon.mk ./package/kernel/linux/modules/
-cp -rf ./diydata/data/modules-lede/netsupport.mk ./package/kernel/linux/modules/
+#cp -rf ./diydata/data/modules-lede/netsupport.mk ./package/kernel/linux/modules/
 
 # kenrel Vermagic （安装ipk需要内核验证）即sbwml的 01-prepare_base-mainline.sh中的代码
 sed -ie 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
@@ -162,7 +162,7 @@ sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)-$(IMG_PREFIX_VERNUM)$(IMG_PREFIX
 #sed -i "s/OpenWrt/OprX/g" package/base-files/files/bin/config_generate package/base-files/image-config.in config/Config-images.in Config.in include/u-boot.mk include/version.mk package/network/config/wifi-scripts/files/lib/wifi/mac80211.sh || true
 
 # 内核版本【尽量不要修改，好komd】
-#sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile
+sed -i 's/KERNEL_PATCHVER:=6.6/KERNEL_PATCHVER:=6.12/g' target/linux/x86/Makefile
 
 # 网络连接数
 #sed -i 's/net.netfilter.nf_conntrack_max=16384/net.netfilter.nf_conntrack_max=65535/g' package/kernel/linux/files/sysctl-nf-conntrack.conf
