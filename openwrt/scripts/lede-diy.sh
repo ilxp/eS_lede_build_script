@@ -99,7 +99,7 @@ cp -f ./diydata/data/default-settings-eS package/lean/default-settings/files/zzz
 
 #三、编译出错的########
 rm -rf target/linux/generic/files/drivers/net/phy/b53
-merge_package main https://github.com/openwrt/openwrt.git target/linux/generic/files/drivers/net/phy target/linux/generic/files/drivers/net/phy/b53
+#merge_package main https://github.com/openwrt/openwrt.git target/linux/generic/files/drivers/net/phy target/linux/generic/files/drivers/net/phy/b53
 
 #luci-ssl替换mbedtls
 sed -i "s/libustream-mbedtls/libustream-openssl/g" feeds/luci/collections/luci-ssl/Makefile
