@@ -98,7 +98,6 @@ cp -rf ./diydata/data/app/*  ./
 cp -f ./diydata/data/default-settings-eS package/lean/default-settings/files/zzz-default-settings
 
 #三、编译出错的########
-rm -rf target/linux/generic/files/drivers/net/phy/b53
 rm -rf target/linux/generic/hack-6.12/220-arm-gc_sections.patch
 
 #luci-ssl替换mbedtls
