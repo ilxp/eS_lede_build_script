@@ -97,9 +97,7 @@ cp -rf ./diydata/data/app/*  ./
 #复制default-settings文件
 cp -f ./diydata/data/default-settings-eS package/lean/default-settings/files/zzz-default-settings
 
-#三、编译出错的########
-rm -rf target/linux/generic/hack-6.12/220-arm-gc_sections.patch
-
+#三、编译出错的######
 #luci-ssl替换mbedtls
 sed -i "s/libustream-mbedtls/libustream-openssl/g" feeds/luci/collections/luci-ssl/Makefile
 
