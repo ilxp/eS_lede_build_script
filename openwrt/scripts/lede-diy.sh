@@ -424,8 +424,8 @@ git clone https://github.com/sirpdboy/netspeedtest.git package/diy/netspeedtest
 sed -i 's/Net Speedtest/网络测速/g' package/diy/netspeedtest/luci-app-netspeedtest/luasrc/controller/netspeedtest.lua
 
 #定时设置（会产生一个control管控栏目）
-git clone https://github.com/sirpdboy/luci-app-autotimeset package/diy/luci-app-autotimeset
-sed -i 's/Scheduled Setting/定时设置/g' package/diy/luci-app-autotimeset/luasrc/controller/autotimeset.lua
+git clone https://github.com/sirpdboy/luci-app-taskplan package/diy/luci-app-taskplan
+sed -i 's/Scheduled Setting/定时设置/g' package/diy/luci-app-taskplan/luasrc/controller/taskplan.lua
 
 #关机  编译不成功采用esir的
 #git clone https://github.com/sirpdboy/luci-app-poweroffdevice package/diy/luci-app-poweroffdevice
@@ -452,7 +452,8 @@ sed -i 's,expquit 1 ,#expquit 1 ,g' package/diy/luci-app-partexp/root/etc/init.d
 #git clone https://github.com/sirpdboy/luci-app-ddns-go package/diy/ddns-go  #luci自带的23.05
 
 #luck
-git clone https://github.com/gdy666/luci-app-lucky package/diy/luck
+#git clone https://github.com/gdy666/luci-app-lucky package/diy/luck
+git clone https://github.com/sirpdboy/luci-app-lucky package/diy/luck
 
 #高级设置
 git clone https://github.com/sirpdboy/luci-app-advanced.git package/diy/luci-app-advanced

@@ -478,11 +478,11 @@ CONFIG_PACKAGE_kmod-oaf=y
 
 #sirpdboy大神重启计划等插件
 CONFIG_PACKAGE_luci-app-parentcontrol=y   #家长控制（包含时间，端口，）
-CONFIG_PACKAGE_luci-app-lucky=n #反向代理
-CONFIG_PACKAGE_luci-app-ddns-go=y  #反向代理
+CONFIG_PACKAGE_luci-app-lucky=y #反向代理
+CONFIG_PACKAGE_luci-app-ddns-go=n  #反向代理
 CONFIG_PACKAGE_luci-app-poweroffdevice=n #编译不成功，采用另一个
 CONFIG_PACKAGE_luci-app-poweroff=n  #关机
-CONFIG_PACKAGE_luci-app-autotimeset=y #定时设置
+CONFIG_PACKAGE_luci-app-taskplan=y #定时设置
 CONFIG_PACKAGE_luci-app-netwizard=n  #网络设置向导
 CONFIG_PACKAGE_luci-app-netspeedtest=n   #网络测速
 CONFIG_PACKAGE_luci-app-netdata=n  #汉化版netdata
