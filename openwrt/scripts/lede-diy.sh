@@ -128,7 +128,7 @@ cp -rf ./diydata/data/modules-lede/hwmon.mk ./package/kernel/linux/modules/
 
 # kenrel Vermagic （安装ipk需要内核验证）即sbwml的 01-prepare_base-mainline.sh中的代码
 sed -ie 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
-#grep HASH include/kernel-6.6 | awk -F'HASH-' '{print $2}' | awk '{print $1}' | md5sum | awk '{print $1}' > .vermagic
+#grep HASH include/kernel-6.12 | awk -F'HASH-' '{print $2}' | awk '{print $1}' | md5sum | awk '{print $1}' > .vermagic
 grep HASH include/kernel-$kernel_version | awk -F'HASH-' '{print $2}' | awk '{print $1}' | md5sum | awk '{print $1}' > .vermagic
 
 # Optimization level -Ofast
