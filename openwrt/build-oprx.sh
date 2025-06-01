@@ -120,7 +120,7 @@ fi
 # kernel version
 #[ "$TESTING_KERNEL" = "y" ] && export kernel_version=6.12 || export kernel_version=6.6
 
-export kernel_version=6.6
+export kernel_version=6.12
 if [ "$1" = "dev" ]; then  #分支-Snapshots
     #curl -s https://github.com/coolsnowwolf/lede/raw/$branch/include/kernel-$kernel_version > kernel.txt #有时获取不到
 	wget -qO- https://raw.githubusercontent.com/coolsnowwolf/lede/$branch/include/kernel-$kernel_version  >> kernel.txt
