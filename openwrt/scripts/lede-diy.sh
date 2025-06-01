@@ -111,6 +111,8 @@ merge_package main https://github.com/openwrt/openwrt.git package/devel package/
 # grub2 -  disable `gc-sections` flag
 #sed -i '/PKG_BUILD_FLAGS/ s/$/ no-gc-sections/' package/boot/grub2/Makefile
 
+rm -rf target/linux/generic/files/drivers/net/phy/b53
+
 ###################
 
 #四、系统优化########
