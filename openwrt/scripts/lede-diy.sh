@@ -111,7 +111,7 @@ merge_package main https://github.com/openwrt/openwrt.git package/devel package/
 # grub2 -  disable `gc-sections` flag
 #sed -i '/PKG_BUILD_FLAGS/ s/$/ no-gc-sections/' package/boot/grub2/Makefile
 
-rm -rf target/linux/generic/files/drivers/net/phy/b53
+#rm -rf target/linux/generic/files/drivers/net/phy/b53
 
 ###################
 
@@ -123,9 +123,9 @@ rm -rf target/linux/generic/files/drivers/net/phy/b53
 #sed -i 's/kmod-tcp-bbr/kmod-tcp-bbr3/g' feeds/luci/applications/luci-app-turboacc/Makefile
 
 # Modules  （package/kernel/linux/modules）
-rm -rf package/kernel/linux/modules/hwmon.mk #修改CONFIG_ALL_KMODS
+#rm -rf package/kernel/linux/modules/hwmon.mk #修改CONFIG_ALL_KMODS
 #rm -rf package/kernel/linux/modules/netsupport.mk   #tcp-bbr为tcp-bbr3
-cp -rf ./diydata/data/modules-lede/hwmon.mk ./package/kernel/linux/modules/
+#cp -rf ./diydata/data/modules-lede/hwmon.mk ./package/kernel/linux/modules/
 #cp -rf ./diydata/data/modules-lede/netsupport.mk ./package/kernel/linux/modules/
 
 # kenrel Vermagic （安装ipk需要内核验证）即sbwml的 01-prepare_base-mainline.sh中的代码
