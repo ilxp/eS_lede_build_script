@@ -390,9 +390,9 @@ GEOSITE_URL="https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/dow
 #wget -qO- $CLASH_DEV_URL | tar xOvz > package/base-files/files/etc/openclash/core/clash
 #wget -qO- $CLASH_TUN_URL | gunzip -c > package/base-files/files/etc/openclash/core/clash_tun
 #wget -qO- $CLASH_META_URL | tar xOvz > package/base-files/files/etc/openclash/core/clash_meta
-wget -qO- $GEOIP_URL > package/base-files/files/etc/openclash/GeoIP.dat
+#wget -qO- $GEOIP_URL > package/base-files/files/etc/openclash/GeoIP.dat #提示已经存在，无法编译
 #wget -qO- $GEOSITE_URL > package/base-files/files/etc/openclash/GeoSite.dat #提示已经存在，无法编译
-chmod +x package/base-files/files/etc/openclash/core/clash*
+#chmod +x package/base-files/files/etc/openclash/core/clash*
 
 # 4、mihomo nikki（只支持firewall4.lede无望）
 #git clone --depth=1 https://github.com/nikkinikki-org/OpenWrt-nikki package/diy/OpenWrt-nikki
