@@ -660,3 +660,6 @@ CONFIG_PACKAGE_kmod-kvm-intel=y
 CONFIG_PACKAGE_kmod-kvm-x86=y
 CONFIG_PACKAGE_open-vm-tools=y 
 
+#b53交换机
+# CONFIG_SWCONFIG_B53 is not set
+
