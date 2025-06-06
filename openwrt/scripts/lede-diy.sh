@@ -116,6 +116,10 @@ merge_package main https://github.com/openwrt/openwrt.git package/devel package/
 ###################
 
 #四、系统优化########
+#更换默认内核配置
+rm -rf target/linux/generic/config-6.12
+cp -rf ./diydata/data/config-6.12 ./target/linux/generic/
+
 # BBRv3  已经在yaof里面 
 #cp -rf ./diydata/data/bbr3-yaof6.6/* ./target/linux/generic/backport-6.6/
 #cp -rf ./diydata/data/bbr3-yaof6.6/* ./target/linux/generic/backport-6.12/
