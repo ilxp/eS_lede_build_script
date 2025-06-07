@@ -111,7 +111,7 @@ merge_package main https://github.com/openwrt/openwrt.git package/devel package/
 # grub2 -  disable `gc-sections` flag
 #sed -i '/PKG_BUILD_FLAGS/ s/$/ no-gc-sections/' package/boot/grub2/Makefile
 
-#rm -rf target/linux/generic/files/drivers/net/phy/b53
+rm -rf target/linux/generic/files/drivers/net/phy/b53
 #merge_package main https://github.com/openwrt/openwrt.git target/linux/generic/files/drivers/net/phy target/linux/generic/files/drivers/net/phy/b53
 #merge_package openwrt-24.10 https://github.com/immortalwrt/immortalwrt.git target/linux/generic/files/drivers/net/phy target/linux/generic/files/drivers/net/phy/b53
 
