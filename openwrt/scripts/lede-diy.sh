@@ -108,12 +108,8 @@ sed -i '/PKG_BUILD_FLAGS/ s/$/ no-gc-sections/' package/boot/grub2/Makefile
 rm -rf package/network/services/hostapd
 merge_package main https://github.com/openwrt/openwrt.git package/network/services package/network/services/hostapd
 
-rm -rf package/libs/udebug
-merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/udebug
-
 rm -rf package/libs/ustream-ssl
 merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
-
 
 #ath10k-ct  报错
 rm -rf package/kernel/ath10k-ct
@@ -703,7 +699,7 @@ popd
 
 #11、golang以及openlist
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
 
 rm -rf feeds/luci/applications/luci-app-openlist
 rm -rf feeds/packages/net/openlist
