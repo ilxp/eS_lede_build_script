@@ -111,6 +111,9 @@ merge_package main https://github.com/openwrt/openwrt.git package/network/servic
 rm -rf package/libs/udebug
 merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/udebug
 
+rm -rf package/libs/ustream-ssl
+merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
+
 
 #ath10k-ct  报错
 rm -rf package/kernel/ath10k-ct
