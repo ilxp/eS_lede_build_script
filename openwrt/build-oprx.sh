@@ -223,7 +223,7 @@ cat > feeds.conf <<EOF
 #src-git telephony https://$github/openwrt/telephony.git$telephony
 
 src-git packages https://$github/coolsnowwolf/packages.git$packages
-src-git luci https://$github/coolsnowwolf/luci.git;openwrt-23.05 #23.05分支luci
+src-git luci https://$github/coolsnowwolf/luci.git;openwrt-25.12 #25.12分支luci
 #src-git luci https://$github/coolsnowwolf/luci$luci      #master分为luci18
 src-git routing https://$github/coolsnowwolf/routing.git;main
 src-git telephony https://$github/openwrt/telephony.git$telephony
