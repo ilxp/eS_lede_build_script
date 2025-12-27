@@ -108,12 +108,12 @@ sed -i '/PKG_BUILD_FLAGS/ s/$/ no-gc-sections/' package/boot/grub2/Makefile
 rm -rf package/network/services/hostapd
 merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git package/network/services package/network/services/hostapd
 
-#rm -rf package/libs/ustream-ssl
-#merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
+rm -rf package/libs/ustream-ssl
+merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
 
 #ath10k-ct  报错
 #rm -rf package/kernel/ath10k-ct
-#merge_package main https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
+#merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
 
 ###################
 
