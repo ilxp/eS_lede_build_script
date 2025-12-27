@@ -112,8 +112,8 @@ rm -rf package/libs/ustream-ssl
 merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
 
 #ath10k-ct  报错
-#rm -rf package/kernel/ath10k-ct
-#merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
+rm -rf package/kernel/ath10k-ct
+merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
 
 ###################
 
@@ -670,8 +670,8 @@ sed -i 's/\/bin\/bash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # sbwml大神
 # sbwml大神 【yaof使用sbwml的最新】
-#rm -rf feeds/luci/applications/luci-app-dockerman
-#git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/luci/applications/luci-app-dockerman
+git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
 git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
@@ -679,9 +679,9 @@ git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/util
 git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 
 #为系统添加挂载目录：
-pushd feeds/luci
-    curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1
-popd
+#pushd feeds/luci
+    #curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1
+#popd
 
 #9、全能推送（商店自己安装）
 #rm -rf feeds/luci/applications/luci-app-pushbot
