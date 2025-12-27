@@ -101,19 +101,19 @@ cp -f ./diydata/data/default-settings-eS package/lean/default-settings/files/zzz
 #三、编译出错的######【注意，609行编译解锁网易云音乐  只能用luci自带的，其余安装不上】
 #替换grub2 【lede的编译出错】
 rm -rf package/boot/grub2
-merge_package main https://github.com/openwrt/openwrt.git package/boot package/boot/grub2
+merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git package/boot package/boot/grub2
 # grub2 -  disable `gc-sections` flag
 sed -i '/PKG_BUILD_FLAGS/ s/$/ no-gc-sections/' package/boot/grub2/Makefile
 
 rm -rf package/network/services/hostapd
-merge_package main https://github.com/openwrt/openwrt.git package/network/services package/network/services/hostapd
+merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git package/network/services package/network/services/hostapd
 
-rm -rf package/libs/ustream-ssl
-merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
+#rm -rf package/libs/ustream-ssl
+#merge_package main https://github.com/openwrt/openwrt.git package/libs package/libs/ustream-ssl
 
 #ath10k-ct  报错
-rm -rf package/kernel/ath10k-ct
-merge_package main https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
+#rm -rf package/kernel/ath10k-ct
+#merge_package main https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
 
 ###################
 
@@ -670,8 +670,8 @@ sed -i 's/\/bin\/bash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # sbwml大神
 # sbwml大神 【yaof使用sbwml的最新】
-rm -rf feeds/luci/applications/luci-app-dockerman
-git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+#rm -rf feeds/luci/applications/luci-app-dockerman
+#git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
 git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
 git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
