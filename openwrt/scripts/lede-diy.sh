@@ -678,11 +678,6 @@ git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/d
 git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
 git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 
-#为系统添加挂载目录：
-#pushd feeds/luci
-    #curl -s https://raw.githubusercontent.com/sbwml/r4s_build_script/master/openwrt/patch/luci/0006-luci-mod-system-mounts-add-docker-directory-mount-po.patch | patch -p1
-#popd
-
 #9、全能推送（商店自己安装）
 #rm -rf feeds/luci/applications/luci-app-pushbot
 #git clone https://github.com/zzsj0928/luci-app-pushbot.git package/diy/luci-app-pushbot
