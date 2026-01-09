@@ -119,16 +119,16 @@ merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git  package/kern
 
 #四、系统优化########
 
-# BBRv3  lede无法使用并且导致1天后无法登陆
-#cp -rf ./diydata/data/bbr3-yaof6.6/* ./target/linux/generic/backport-6.12/
+# BBRv3  
+cp -rf ./diydata/data/bbr3-yaof6.12/* ./target/linux/generic/backport-6.12/
 #修改turboacc的依赖 bbr为bbr3
-#sed -i 's/kmod-tcp-bbr/kmod-tcp-bbr3/g' feeds/luci/applications/luci-app-turboacc/Makefile
+sed -i 's/kmod-tcp-bbr/kmod-tcp-bbr3/g' feeds/luci/applications/luci-app-turboacc/Makefile
 
 # Modules  （package/kernel/linux/modules）  
-#rm -rf package/kernel/linux/modules/hwmon.mk #修改CONFIG_ALL_KMODS
-#rm -rf package/kernel/linux/modules/netsupport.mk   #tcp-bbr为tcp-bbr3
-#cp -rf ./diydata/data/modules-lede/hwmon.mk ./package/kernel/linux/modules/
-#cp -rf ./diydata/data/modules-lede/netsupport.mk ./package/kernel/linux/modules/
+rm -rf package/kernel/linux/modules/hwmon.mk #修改CONFIG_ALL_KMODS
+rm -rf package/kernel/linux/modules/netsupport.mk   #tcp-bbr为tcp-bbr3
+cp -rf ./diydata/data/modules-lede/hwmon.mk ./package/kernel/linux/modules/
+cp -rf ./diydata/data/modules-lede/netsupport.mk ./package/kernel/linux/modules/
 
 # kenrel Vermagic （安装ipk需要内核验证）即sbwml的 01-prepare_base-mainline.sh中的代码
 sed -ie 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic/' include/kernel-defaults.mk
