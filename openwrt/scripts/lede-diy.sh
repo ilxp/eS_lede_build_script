@@ -425,7 +425,7 @@ sed -i 's/Download Settings/下载设置/g' package/diy/gargoyle-qos-openwrt/luc
 sed -i 's/Upload Settings/上传设置/g' package/diy/gargoyle-qos-openwrt/luci-app-qos-gargoyle/luasrc/controller/qos_gargoyle.lua
 #wget -qO - https://raw.gitmirror.com/ilxp/gargoyle-qos-openwrt/openwrt-2203/010-revert_to_iptables.patch | patch -p1  #去除firwall4，用3
 wget -N https://raw.githubusercontent.com/ilxp/gargoyle-qos-openwrt/refs/heads/imq/patch/iptables/608-add-gargoyle-netfilter-match-modules.patch -P package/network/utils/iptables/patches/
-wget -N https://raw.githubusercontent.com/ilxp/gargoyle-qos-openwrt/refs/heads/imq/patch/kernel/608-add-kernel-gargoyle-netfilter-match-modules.patch -P target/linux/generic/pending-5.15/
+wget -N https://raw.githubusercontent.com/ilxp/gargoyle-qos-openwrt/refs/heads/imq/patch/kernel/608-add-kernel-gargoyle-netfilter-match-modules.patch -P target/linux/generic/pending-6.12/
 
 #2）eqos，采用luci自带的即可。把eqos放在管控下。不在列入Qos目录下
 #rm -rf feeds/luci/applications/luci-app-eqos #lean库里没有eqos
@@ -444,15 +444,17 @@ git clone https://github.com/sirpdboy/luci-app-eqosplus  package/diy/luci-app-eq
 #sed -i 's/services/qos/g' feeds/luci/applications/luci-app-nft-qos/luasrc/controller/nft-qos.lua   #将其移动到QOS目录下
 
 #3)SQM
-#sed -i 's/network/qos/g' feeds/luci/applications/luci-app-sqm/luasrc/controller/sqm.lua   #将其移动到QOS下
+#sed -i 's/network/qos/g' feeds/luci/applications/luci-app-sqm/luasrc/controller/sqm.lua #将其移动到QOS下,2122系列此法不行
+#把sqm放在qos栏目下（/network 改为/QOS）
+sed -i 's/\/network/\/qos/g' feeds/luci/applications/luci-app-sqm/root/usr/share/luci/menu.d/luci-app-sqm.json #石像鬼qos产生的QOS栏目。
 # SQM Translation
 mkdir -p feeds/packages/net/sqm-scripts/patches
 #curl -s https://init2.cooluc.com/openwrt/patch/sqm/001-help-translation.patch > feeds/packages/net/sqm-scripts/patches/001-help-translation.patch
-cp -f ./diydata/data/sqm/001-help-translation.patch  feeds/packages/net/sqm-scripts/patches/001-help-translation.patch
+cp -f ../data/sqm/001-help-translation.patch  feeds/packages/net/sqm-scripts/patches/001-help-translation.patch
 
 #qosmate  需要nftables
-git clone https://github.com/hudra0/luci-app-qosmate package/diy/luci-app-qosmate
-git clone https://github.com/hudra0/qosmate package/diy/qosmate
+#git clone https://github.com/hudra0/luci-app-qosmate package/diy/luci-app-qosmate
+#git clone https://github.com/hudra0/qosmate package/diy/qosmate
 
 #六）、DNS相关（lede带smartdns）
 #1）smartdns（lede是lede的luci18-branch，master分支是js，lede的luci-23.05分支是js）
