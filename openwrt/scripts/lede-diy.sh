@@ -273,15 +273,15 @@ sed -i 's/services/vpn/g' package/helloworld/luci-app-ssr-plus/luasrc/view/shado
 
 #2、passwall
 #克隆官方的，以及删除sbwml的
-rm -rf package/new/helloworld
-rm -rf feeds/luci/applications/luci-app-passwall
+#rm -rf package/new/helloworld
+#rm -rf feeds/luci/applications/luci-app-passwall
 # 移除 openwrt feeds 自带的核心库
-rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
-git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages
+#rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview,shadow-tls}
+#git clone https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-packages
 
 # 移除 openwrt feeds 过时的luci版本
-rm -rf feeds/luci/applications/luci-app-passwall
-git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/helloworld
+#rm -rf feeds/luci/applications/luci-app-passwall
+#git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/helloworld
 #采用kenzok8的small库
 #git clone https://github.com/kenzok8/small.git package/diy/openwrt-passwall
 
@@ -290,32 +290,32 @@ git clone https://github.com/Openwrt-Passwall/openwrt-passwall package/helloworl
 #git clone https://github.com/sbwml/openwrt_helloworld package/helloworld -b v5
 
 ##FQ全部调到VPN菜单
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/controller/*.lua
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/passwall/*.lua
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/model/cbi/passwall/server/*.lua
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/app_update/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/socks_auto_switch/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/global/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/haproxy/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/log/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/rule/*.htm
-sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/server/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/controller/*.lua
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/passwall/*.lua
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/model/cbi/passwall/client/*.lua
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/model/cbi/passwall/server/*.lua
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/app_update/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/socks_auto_switch/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/global/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/haproxy/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/log/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/node_list/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/rule/*.htm
+#sed -i 's/services/vpn/g' package/helloworld/luci-app-passwall/luasrc/view/passwall/server/*.htm
 # Passwall 白名单
-echo '
-teamviewer.com
-epicgames.com
-dangdang.com
-account.synology.com
-ddns.synology.com
-checkip.synology.com
-checkip.dyndns.org
-checkipv6.synology.com
-ntp.aliyun.com
-cn.ntp.org.cn
-ntp.ntsc.ac.cn
-' >>./package/helloworld/luci-app-passwall/root/usr/share/passwall/rules/direct_host
+#echo '
+#teamviewer.com
+#epicgames.com
+#dangdang.com
+#account.synology.com
+#ddns.synology.com
+#checkip.synology.com
+#checkip.dyndns.org
+#checkipv6.synology.com
+#ntp.aliyun.com
+#cn.ntp.org.cn
+#ntp.ntsc.ac.cn
+#' >>./package/helloworld/luci-app-passwall/root/usr/share/passwall/rules/direct_host
 
 #3、clash（不编译luci，只编译带内核）
 #1）openclash
