@@ -250,6 +250,10 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
 
 #二）、翻墙系列（lede编译系统自带为SSR-Plus+openclash）
+#golang版本【使用sbwnl库的记得要更新到最新26.x】
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+
 rm -rf feeds/packages/net/shadowsocks-libev
 #1、ssr-plus
 rm -rf package/new/helloworld
@@ -702,10 +706,7 @@ merge_package master https://github.com/lisaac/luci-lib-docker.git package/new c
 #git clone https://$github/sbwml/package_kernel_r8126 package/kernel/r8126
 #git clone https://$github/sbwml/package_kernel_r8127 package/kernel/r8127
 
-#11、golang以及openlist
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 26.x feeds/packages/lang/golang
-
+#11、openlist2
 rm -rf feeds/luci/applications/luci-app-openlist
 rm -rf feeds/packages/net/openlist
 git clone https://github.com/sbwml/luci-app-openlist2 package/new/openlist2
