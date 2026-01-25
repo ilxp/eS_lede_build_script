@@ -115,6 +115,13 @@ merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git package/libs 
 rm -rf package/kernel/ath10k-ct
 merge_package openwrt-25.12 https://github.com/openwrt/openwrt.git  package/kernel package/kernel/ath10k-ct
 
+rm -rf package/network/utils/uqmi
+merge_package main https://github.com/openwrt/openwrt.git  package/network/utils package/network/utils/uqmi
+
+rm -rf package/system/ubus
+merge_package main https://github.com/openwrt/openwrt.git  package/system package/system/ubus
+
+
 ###################
 
 #四、系统优化########
