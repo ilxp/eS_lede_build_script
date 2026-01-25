@@ -387,7 +387,7 @@ git clone https://github.com/sirpdboy/luci-app-netdata.git package/diy/luci-app-
 
 #网络设置向导
 git clone https://github.com/sirpdboy/luci-app-netwizard.git package/diy/netwizard
-sed -i 's/Netwizard/设置向导/g' package/diy/netwizard/luci-app-netwizard/root/usr/share/luci/menu.d/luci-app-netwizard.json
+#sed -i 's/Netwizard/设置向导/g' package/diy/netwizard/luci-app-netwizard/root/usr/share/luci/menu.d/luci-app-netwizard.json
 sed -i 's/eth1/eth0/g' package/diy/netwizard/luci-app-netwizard/root/etc/init.d/netwizard
 
 #网络速度测试
@@ -623,6 +623,7 @@ git clone -b main --depth 1 https://github.com/ilxp/openwrt-control  package/diy
 #merge_package openwrt-24.10 https://github.com/coolsnowwolf/luci.git package/new applications/luci-app-turboacc
 #修改 bbr为bbr3
 #sed -i 's/kmod-tcp-bbr/kmod-tcp-bbr3/g' package/new/luci-app-turboacc/Makefile
+
 
 #2、京东签到 By Jerrykuku 作者已关闭了
 #git clone --depth 1 https://github.com/jerrykuku/node-request.git package/new/node-request
