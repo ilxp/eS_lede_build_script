@@ -217,16 +217,16 @@ else
     telephony=";$branch"
 fi
 cat > feeds.conf <<EOF
-#src-git packages https://$github/openwrt/packages.git$packages
-#src-git luci https://$github/openwrt/luci.git$luci
-#src-git routing https://$github/openwrt/routing.git$routing
-#src-git telephony https://$github/openwrt/telephony.git$telephony
-
-src-git packages https://$github/coolsnowwolf/packages.git$packages
-src-git luci https://$github/coolsnowwolf/luci.git;openwrt-23.05 #23.05分支luci
-#src-git luci https://$github/coolsnowwolf/luci$luci      #master分为luci18
-src-git routing https://$github/coolsnowwolf/routing.git;main
+src-git packages https://$github/openwrt/packages.git$packages
+src-git luci https://$github/openwrt/luci.git$luci
+src-git routing https://$github/openwrt/routing.git$routing
 src-git telephony https://$github/openwrt/telephony.git$telephony
+
+#src-git packages https://$github/coolsnowwolf/packages.git$packages
+#src-git luci https://$github/coolsnowwolf/luci.git;openwrt-23.05 #23.05分支luci
+##src-git luci https://$github/coolsnowwolf/luci$luci      #master分为luci18
+#src-git routing https://$github/coolsnowwolf/routing.git;main
+#src-git telephony https://$github/openwrt/telephony.git$telephony
 EOF
 
 # Init feeds
