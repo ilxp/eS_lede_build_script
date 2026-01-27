@@ -121,6 +121,10 @@ merge_package main https://github.com/openwrt/openwrt.git  package/network/utils
 rm -rf package/system/ubus
 merge_package main https://github.com/openwrt/openwrt.git  package/system package/system/ubus
 
+#采用openwrt的luci是，需要：
+rm -rf feeds/luci/rpcd-mod-luci
+merge_package openwrt-25.12 https://github.com/coolsnowwolf/luci.git  feeds/luci libs/rpcd-mod-luci
+
 
 ###################
 
