@@ -682,8 +682,7 @@ sed -i 's/\/bin\/bash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 ## QiuSimons大神
 rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/luci/collections/luci-lib-docker
-#merge_package master https://github.com/lisaac/luci-app-dockerman.git feeds/luci/applications applications/luci-app-dockerman
-merge_package master https://github.com/immortalwrt/luci.git feeds/luci/applications applications/luci-app-dockerman
+merge_package master https://github.com/lisaac/luci-app-dockerman.git feeds/luci/applications applications/luci-app-dockerman
 sed -i '/auto_start/d' feeds/luci/applications/luci-app-dockerman/root/etc/uci-defaults/luci-app-dockerman
 pushd feeds/packages
 wget -qO- https://github.com/openwrt/packages/commit/e2e5ee69.patch | patch -p1
