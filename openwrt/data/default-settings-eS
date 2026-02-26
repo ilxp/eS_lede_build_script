@@ -177,6 +177,11 @@ uci commit firewall
 #sysctl -w net.ipv4.tcp_congestion_control="bbr"   #es系列不用修改
 /etc/init.d/autocore restart
 
+uci set turboacc.global.set='1'
+uci set turboacc.config.fullcone='1' 
+uci set turboacc.config.fastpath='disabled'  ##默认关闭分流
+uci commit turboacc
+
 # einat 启动并确认
 #(
 #if [ -f /etc/init.d/einat ]; then
