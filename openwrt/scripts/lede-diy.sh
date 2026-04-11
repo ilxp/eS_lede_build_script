@@ -122,7 +122,7 @@ rm -rf package/system/ubus
 merge_package main https://github.com/openwrt/openwrt.git  package/system package/system/ubus
 
 rm -rf package/kernel/mac80211
-merge_package main https://github.com/openwrt/openwrt.git  package/kernel  package/kernel/mac80211
+merge_package main https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
 
 ###################
 
