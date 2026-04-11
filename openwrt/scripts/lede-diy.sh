@@ -122,7 +122,7 @@ rm -rf package/system/ubus
 merge_package main https://github.com/openwrt/openwrt.git  package/system package/system/ubus
 
 rm -rf package/kernel/mac80211
-merge_package main https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
+merge_package master https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
 
 ###################
 
@@ -150,7 +150,7 @@ grep HASH include/kernel-$kernel_version | awk -F'HASH-' '{print $2}' | awk '{pr
 sed -i 's/Os/O3 -mtune=generic/g' include/target.mk  #sbwml的target-modify_for_x86_64.patch代码
 
 # All-komd -Fix x86 - CONFIG_ALL_KMODS（lede无法使用导致编译b53失败。已经失效，已经改在data/hwmon.mk）
-sed -i 's/hwmon, +PACKAGE_kmod-thermal:kmod-thermal/hwmon/g' package/kernel/linux/modules/hwmon.mk
+#sed -i 's/hwmon, +PACKAGE_kmod-thermal:kmod-thermal/hwmon/g' package/kernel/linux/modules/hwmon.mk
 
 # 固件版本号(21.3.2 %y : 年份的最后两位数字)
 #date=`TZ=UTC-8 date +%m.%d.%Y`  #升级用，统一这样
@@ -388,8 +388,9 @@ rm -rf feeds/luci/applications/luci-app-netdata
 git clone https://github.com/sirpdboy/luci-app-netdata.git package/diy/luci-app-netdata
 
 #网络设置向导
-#git clone https://github.com/sirpdboy/luci-app-netwizard.git package/diy/netwizard
-git clone https://github.com/ilxp/luci-app-netwizard.git package/diy/netwizard
+git clone https://github.com/sirpdboy/luci-app-netwizard.git package/diy/netwizard
+#git clone https://github.com/ilxp/luci-app-netwizard.git package/diy/netwizard
+#sed -i 's/Netwizard/设置向导/g' package/diy/netwizard/luci-app-netwizard/luasrc/controller/netwizard.lua
 sed -i 's/Netwizard/设置向导/g' package/diy/netwizard/luci-app-netwizard/root/usr/share/luci/menu.d/luci-app-netwizard.json
 sed -i 's/eth1/eth0/g' package/diy/netwizard/luci-app-netwizard/root/etc/init.d/netwizard
 
@@ -400,8 +401,8 @@ sed -i 's/NetSpeedtest/网络测速/g' package/diy/netspeedtest/luci-app-netspee
 #任务设置（会产生一个control管控栏目）
 rm -rf package/sirpdboy/luci-app-taskplan
 git clone https://github.com/sirpdboy/luci-app-taskplan package/diy/taskplan
-sed -i 's/Task Plan/任务设置/g' package/diy/taskplan/luci-app-taskplan/luasrc/controller/taskplan.lua
-sed -i 's/Control/管控/g' package/diy/taskplan/luci-app-taskplan/luasrc/controller/taskplan.lua
+sed -i 's/Task Plan/任务设置/g' package/diy/taskplan/luci-app-taskplan/root/usr/share/luci/menu.d/luci-app-taskplan.json
+sed -i 's/Control/管控/g' package/diy/taskplan/luci-app-taskplan/root/usr/share/luci/menu.d/luci-app-taskplan.json
 
 #关机  编译不成功采用esir的
 #git clone https://github.com/sirpdboy/luci-app-poweroffdevice package/diy/luci-app-poweroffdevice
@@ -439,14 +440,8 @@ git clone https://github.com/sirpdboy/luci-app-advanced.git package/diy/luci-app
 
 
 ##五）QOS相关
-#石像鬼qos采用我自己的，会有一个QOS栏目生成
+#iqos采用我自己的，会有一个QOS栏目生成
 git clone -b main https://github.com/ilxp/iqos-openwrt.git  package/diy/iqos-openwrt
-#sed -i 's/Gargoyle QoS/石像鬼 QoS/g' package/diy/gargoyle-qos-openwrt/luci-app-qos-gargoyle/luasrc/controller/qos_gargoyle.lua
-#sed -i 's/Download Settings/下载设置/g' package/diy/gargoyle-qos-openwrt/luci-app-qos-gargoyle/luasrc/controller/qos_gargoyle.lua
-#sed -i 's/Upload Settings/上传设置/g' package/diy/gargoyle-qos-openwrt/luci-app-qos-gargoyle/luasrc/controller/qos_gargoyle.lua
-#wget -qO - https://raw.gitmirror.com/ilxp/gargoyle-qos-openwrt/openwrt-2203/010-revert_to_iptables.patch | patch -p1  #去除firwall4，用3
-#wget -N https://raw.githubusercontent.com/ilxp/gargoyle-qos-openwrt/refs/heads/imq/patch/iptables/608-add-gargoyle-netfilter-match-modules.patch -P package/network/utils/iptables/patches/
-#wget -N https://raw.githubusercontent.com/ilxp/gargoyle-qos-openwrt/refs/heads/imq/patch/kernel/608-add-kernel-gargoyle-netfilter-match-modules.patch -P target/linux/generic/pending-6.12/
 
 #2）eqos，采用luci自带的即可。把eqos放在管控下。不在列入Qos目录下
 #rm -rf feeds/luci/applications/luci-app-eqos #lean库里没有eqos
@@ -467,11 +462,11 @@ git clone https://github.com/sirpdboy/luci-app-eqosplus  package/diy/luci-app-eq
 #3)SQM
 #sed -i 's/network/qos/g' feeds/luci/applications/luci-app-sqm/luasrc/controller/sqm.lua #将其移动到QOS下,2122系列此法不行
 #把sqm放在qos栏目下（/network 改为/QOS）
-sed -i 's/\/network/\/qos/g' feeds/luci/applications/luci-app-sqm/root/usr/share/luci/menu.d/luci-app-sqm.json #石像鬼qos产生的QOS栏目。
+sed -i 's/\/network/\/qos/g' feeds/luci/applications/luci-app-sqm/root/usr/share/luci/menu.d/luci-app-sqm.json #iqos产生的QOS栏目。
 # SQM Translation
 mkdir -p feeds/packages/net/sqm-scripts/patches
 #curl -s https://init2.cooluc.com/openwrt/patch/sqm/001-help-translation.patch > feeds/packages/net/sqm-scripts/patches/001-help-translation.patch
-cp -f ../data/sqm/001-help-translation.patch  feeds/packages/net/sqm-scripts/patches/001-help-translation.patch
+cp -f ./diydata/data/sqm/001-help-translation.patch  feeds/packages/net/sqm-scripts/patches/001-help-translation.patch
 
 #qosmate  需要nftables
 #git clone https://github.com/hudra0/luci-app-qosmate package/diy/luci-app-qosmate
