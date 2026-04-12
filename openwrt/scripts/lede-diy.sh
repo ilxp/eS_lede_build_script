@@ -898,13 +898,13 @@ merge_package master https://github.com/openwrt/packages.git package/new net/v2r
 
 #25、UPnP （lede还是用iptables，没有用nftables，故无法使用最新）
 #删除lean大佬的旧版本
-rm -rf ./feeds/packages/net/miniupnpc
-merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpc
+#rm -rf ./feeds/packages/net/miniupnpc
+#merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpc
 
 # UPnP（QiuSimons的，针对lede 23.05luci）
-rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpd
-merge_package master https://github.com/openwrt/luci.git feeds/luci/applications applications/luci-app-upnp  #官方的是在services栏目下
+#rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+#merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpd
+#merge_package master https://github.com/openwrt/luci.git feeds/luci/applications applications/luci-app-upnp  #官方的是在services栏目下
 # 精简 UPnP 菜单名称
 sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 #sed -i "s/miniupnpd/miniupnpd-nftables/g" feeds/luci/applications/luci-app-upnp/Makefile  

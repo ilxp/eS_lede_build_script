@@ -374,12 +374,28 @@ CONFIG_PACKAGE_luci-app-zerotier=n
 CONFIG_PACKAGE_firewall4=y
 CONFIG_PACKAGE_kmod-nft-offload=y
 CONFIG_PACKAGE_kmod-nft-fullcone=y
-CONFIG_PACKAGE_miniupnpd-nftables=y
+# CONFIG_PACKAGE_arptables-legacy is not set
+CONFIG_PACKAGE_arptables-nft=y
+# CONFIG_PACKAGE_ebtables-legacy is not set
+CONFIG_PACKAGE_ebtables-nft=y
+# CONFIG_PACKAGE_ip6tables-legacy is not set
+CONFIG_PACKAGE_ip6tables-nft=y
+# CONFIG_PACKAGE_xtables-legacy is not set
+CONFIG_PACKAGE_xtables-nft=y
+# CONFIG_PACKAGE_iptables-legacy is not set
+CONFIG_PACKAGE_iptables-nft=y
+CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
+CONFIG_PACKAGE_iptables-mod-iprange=y
+CONFIG_PACKAGE_iptables-mod-nat-extra=y
+CONFIG_PACKAGE_iptables-mod-socket=y
+CONFIG_PACKAGE_iptables-mod-tproxy=y
+CONFIG_PACKAGE_miniupnpd-iptables=y
+CONFIG_PACKAGE_miniupnpd-nftables=n
 CONFIG_PACKAGE_nat6=y
 
 #nftable需要
 CONFIG_PACKAGE_MODULES=y
-CONFIG_PACKAG_kmod-ifb=y
+
 
 #一、去广告相关
 ### BBRv3 ### v3用不了
@@ -437,7 +453,7 @@ CONFIG_PACKAGE_luci-app-eqosplus=n
 
 CONFIG_PACKAGE_luci-app-nft-qos=n
 
-#石像鬼qos
+#iqos
 CONFIG_PACKAGE_luci-app-iqos=y
 
 #qosmate
@@ -623,4 +639,3 @@ CONFIG_PACKAGE_kmod-kvm-amd=y
 CONFIG_PACKAGE_kmod-kvm-intel=y
 CONFIG_PACKAGE_kmod-kvm-x86=y
 CONFIG_PACKAGE_open-vm-tools=y 
-
