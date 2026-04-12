@@ -121,8 +121,8 @@ merge_package main https://github.com/openwrt/openwrt.git  package/network/utils
 rm -rf package/system/ubus
 merge_package main https://github.com/openwrt/openwrt.git  package/system package/system/ubus
 
-rm -rf package/kernel/mac80211
-merge_package master https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
+rm -rf package/kernel/mac80211   #编译不成功，暂时删除
+#merge_package master https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
 
 ###################
 
