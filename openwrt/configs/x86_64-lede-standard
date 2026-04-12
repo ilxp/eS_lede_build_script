@@ -383,8 +383,8 @@ CONFIG_PACKAG_kmod-ifb=y
 
 #一、去广告相关
 ### BBRv3 ### v3用不了
-CONFIG_PACKAGE_kmod-tcp-bbr=y
-CONFIG_PACKAGE_kmod-tcp-bbr3=n
+CONFIG_PACKAGE_kmod-tcp-bbr=n
+CONFIG_PACKAGE_kmod-tcp-bbr3=y
 CONFIG_PACKAGE_kmod-tcp-brutal=y
 
 #1）adhome（采用kiddin9的带二进制）
