@@ -47,8 +47,8 @@ CONFIG_PACKAGE_autosamba=n
 CONFIG_PACKAGE_default-settings=y
 
 # IPv6支持:
-CONFIG_PACKAGE_ipv6-helper=y
-CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_ipv6-helper=n
+CONFIG_PACKAGE_ipv6helper=n
 CONFIG_PACKAGE_ip6tables=y
 CONFIG_PACKAGE_ip6tables-extra=y
 CONFIG_PACKAGE_ip6tables-mod-nat=y
@@ -384,17 +384,14 @@ CONFIG_PACKAGE_ip6tables-nft=y
 CONFIG_PACKAGE_xtables-nft=y
 # CONFIG_PACKAGE_iptables-legacy is not set
 CONFIG_PACKAGE_iptables-nft=y
-CONFIG_PACKAGE_iptables-mod-conntrack-extra=y
-CONFIG_PACKAGE_iptables-mod-iprange=y
-CONFIG_PACKAGE_iptables-mod-nat-extra=y
-CONFIG_PACKAGE_iptables-mod-socket=y
-CONFIG_PACKAGE_iptables-mod-tproxy=y
-CONFIG_PACKAGE_miniupnpd-iptables=y
-CONFIG_PACKAGE_miniupnpd-nftables=n
+CONFIG_PACKAGE_miniupnpd-iptables=n
+CONFIG_PACKAGE_miniupnpd-nftables=y
 CONFIG_PACKAGE_nat6=y
 
 #nftable需要
 CONFIG_PACKAGE_MODULES=y
+
+CONFIG_PACKAGE_luci-app-package-manager=y
 
 
 #一、去广告相关

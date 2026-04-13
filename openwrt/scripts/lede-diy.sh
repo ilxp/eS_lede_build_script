@@ -124,6 +124,7 @@ merge_package main https://github.com/openwrt/openwrt.git  package/system packag
 rm -rf package/kernel/mac80211   #编译不成功，暂时删除
 #merge_package master https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
 
+rm -rf package/network/utils/iptables
 
 ###################
 
@@ -678,6 +679,15 @@ sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 sed -i 's/\/bin\/bash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 #8、Docker 容器
+# sbwml大神 【支持 nftables】
+#rm -rf feeds/luci/applications/luci-app-dockerman
+#git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
+rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
+git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
+git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
+git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
+git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
+
 ## QiuSimons大神
 rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/luci/collections/luci-lib-docker
@@ -690,16 +700,6 @@ popd
 sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 rm -rf ./feeds/luci/collections/luci-lib-docker
 merge_package master https://github.com/lisaac/luci-lib-docker.git package/new collections/luci-lib-docker
-
-# sbwml大神
-# sbwml大神 【有个问题，暂时】
-#rm -rf feeds/luci/applications/luci-app-dockerman
-#git clone https://git.cooluc.com/sbwml/luci-app-dockerman -b openwrt-24.10 feeds/luci/applications/luci-app-dockerman
-#rm -rf feeds/packages/utils/{docker,dockerd,containerd,runc}
-#git clone https://github.com/sbwml/packages_utils_docker feeds/packages/utils/docker
-#git clone https://github.com/sbwml/packages_utils_dockerd feeds/packages/utils/dockerd
-#git clone https://github.com/sbwml/packages_utils_containerd feeds/packages/utils/containerd
-#git clone https://github.com/sbwml/packages_utils_runc feeds/packages/utils/runc
 
 #9、全能推送（商店自己安装）
 #rm -rf feeds/luci/applications/luci-app-pushbot
@@ -898,44 +898,46 @@ merge_package master https://github.com/openwrt/packages.git package/new net/v2r
 
 #25、UPnP （lede还是用iptables，没有用nftables，故无法使用最新）
 #删除lean大佬的旧版本
-#rm -rf ./feeds/packages/net/miniupnpc
-#merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpc
+rm -rf ./feeds/packages/net/miniupnpc
+merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpc
 
 # UPnP（QiuSimons的，针对lede 23.05luci）
-#rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-#merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpd
-#merge_package master https://github.com/openwrt/luci.git feeds/luci/applications applications/luci-app-upnp  #官方的是在services栏目下
+rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
+merge_package master https://github.com/openwrt/packages.git feeds/packages/net net/miniupnpd
+merge_package master https://github.com/openwrt/luci.git feeds/luci/applications applications/luci-app-upnp  #官方的是在services栏目下
 # 精简 UPnP 菜单名称
 sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 #sed -i "s/miniupnpd/miniupnpd-nftables/g" feeds/luci/applications/luci-app-upnp/Makefile  
  
-#wget https://github.com/miniupnp/miniupnp/commit/0e8c68d.patch -O feeds/packages/net/miniupnpd/patches/0e8c68d.patch
-#sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/0e8c68d.patch
-#wget https://github.com/miniupnp/miniupnp/commit/21541fc.patch -O feeds/packages/net/miniupnpd/patches/21541fc.patch
-#sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/21541fc.patch
-#wget https://github.com/miniupnp/miniupnp/commit/b78a363.patch -O feeds/packages/net/miniupnpd/patches/b78a363.patch
-#sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/b78a363.patch
-#wget https://github.com/miniupnp/miniupnp/commit/8f2f392.patch -O feeds/packages/net/miniupnpd/patches/8f2f392.patch
-#sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/8f2f392.patch
-#wget https://github.com/miniupnp/miniupnp/commit/60f5705.patch -O feeds/packages/net/miniupnpd/patches/60f5705.patch
-#sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/60f5705.patch
-#wget https://github.com/miniupnp/miniupnp/commit/3f3582b.patch -O feeds/packages/net/miniupnpd/patches/3f3582b.patch
-#sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/3f3582b.patch
-#cp -rf ./diydata/data/patches/miniupnpd/301-options-force_forwarding-support.patch ./feeds/packages/net/miniupnpd/patches/
-#pushd feeds/packages
-#patch -p1 <../.././diydata/data/patches/miniupnpd/01-set-presentation_url.patch
-#patch -p1 <../.././diydata/data/patches/miniupnpd/02-force_forwarding.patch
-#popd
-#pushd feeds/luci
-#patch -p1 <../.././diydata/data/patches/miniupnpd/luci-upnp-support-force_forwarding-flag.patch
-#popd
+mkdir -p feeds/packages/net/miniupnpd/patches
+wget https://github.com/miniupnp/miniupnp/commit/0e8c68d.patch -O feeds/packages/net/miniupnpd/patches/0e8c68d.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/0e8c68d.patch
+wget https://github.com/miniupnp/miniupnp/commit/21541fc.patch -O feeds/packages/net/miniupnpd/patches/21541fc.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/21541fc.patch
+wget https://github.com/miniupnp/miniupnp/commit/b78a363.patch -O feeds/packages/net/miniupnpd/patches/b78a363.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/b78a363.patch
+wget https://github.com/miniupnp/miniupnp/commit/8f2f392.patch -O feeds/packages/net/miniupnpd/patches/8f2f392.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/8f2f392.patch
+wget https://github.com/miniupnp/miniupnp/commit/60f5705.patch -O feeds/packages/net/miniupnpd/patches/60f5705.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/60f5705.patch
+wget https://github.com/miniupnp/miniupnp/commit/3f3582b.patch -O feeds/packages/net/miniupnpd/patches/3f3582b.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/3f3582b.patch
+wget https://github.com/miniupnp/miniupnp/commit/6aefa9a.patch -O feeds/packages/net/miniupnpd/patches/6aefa9a.patch
+sed -i 's,/miniupnpd/,/,g' ./feeds/packages/net/miniupnpd/patches/6aefa9a.patch
+pushd feeds/packages
+patch -p1 <../.././diydata/data/patches/miniupnpd/01-set-presentation_url.patch
+patch -p1 <../.././diydata/data/patches/miniupnpd/02-force_forwarding.patch
+popd
+pushd feeds/luci
+patch -p1 <../.././diydata/data/patches/miniupnpd/luci-upnp-support-force_forwarding-flag.patch
+popd
 
 # UPnP（来源sbwml的，lede只能使用自带的）
 #rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-#git clone https://git.cooluc.com/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-#git clone https://git.cooluc.com/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b main
+#git clone https://git.cooluc.com/sbwml/miniupnpd feeds/packages/net/miniupnpd -b v2.3.9
+#git clone https://git.cooluc.com/sbwml/luci-app-upnp feeds/luci/applications/luci-app-upnp -b openwrt-24.10
 #设置miniupnpd-iptables #lede是iptables
-#sed -i "s/miniupnpd/miniupnpd-iptables/g" feeds/luci/applications/luci-app-upnp/Makefile   
+#sed -i "s/miniupnpd/miniupnpd-nftables/g" feeds/luci/applications/luci-app-upnp/Makefile   
 #sbwml的Upnp 移动以及翻译
 #sed -i "s/network/services/g" feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
 # 精简 UPnP 菜单名称（sbwml已经是UPNP）
@@ -944,6 +946,15 @@ sed -i 's#\"title\": \"UPnP IGD \& PCP\"#\"title\": \"UPnP\"#g' feeds/luci/appli
 #26、bandix 网络流量监控应
 git clone https://github.com/timsaya/luci-app-bandix  package/new/bandix-luci
 git clone https://github.com/timsaya/openwrt-bandix  package/new/bandix
+
+# apk
+merge_package master https://github.com/openwrt/luci.git  feeds/luci/applications applications/luci-app-package-manager
+pushd feeds/luci
+wget -qO- https://github.com/sbwml/r4s_build_script/raw/refs/heads/master/openwrt/patch/luci/applications/luci-app-package-manager/0001-luci-app-package-manager-support-installing-uploaded.patch | patch -p1
+popd
+
+# IPv6 兼容助手
+patch -p1 <./diydata/data/patches/odhcp6c/1002-odhcp6c-support-dhcpv6-hotplug.patch
 
 ##########################################################################
 
