@@ -125,7 +125,7 @@ rm -rf package/kernel/mac80211   #编译不成功，暂时删除
 #merge_package master https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
 git clone https://github.com/sbwml/package_kernel_mac80211 package/kernel/mac80211 -b v6.18
 
-rm -rf package/network/utils/iptables
+#rm -rf package/network/utils/iptables
 
 ###################
 
