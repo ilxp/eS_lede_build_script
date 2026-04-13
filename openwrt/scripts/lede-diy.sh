@@ -410,7 +410,7 @@ sed -i 's/Control/管控/g' package/diy/taskplan/luci-app-taskplan/root/usr/shar
 git clone https://github.com/esirplayground/luci-app-poweroff package/diy/luci-app-poweroff
 sed -i 's/PowerOff/关机/g' package/diy/luci-app-poweroff/luasrc/controller/poweroff.lua
 
-#家长控制（会生成Control管控栏目） #无法运行，需要iptables
+#家长控制（会生成Control管控栏目） #无法运行，需要iptables  ilxp需要nftables
 #git clone https://github.com/sirpdboy/luci-app-parentcontrol package/diy/luci-app-parentcontrol
 git clone https://github.com/ilxp/luci-app-parentcontrol package/diy/luci-app-parentcontrol
 sed -i 's/Parent Control/家长控制/g' package/diy/luci-app-parentcontrol/luasrc/controller/parentcontrol.lua
