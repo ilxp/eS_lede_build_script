@@ -124,8 +124,6 @@ merge_package main https://github.com/openwrt/openwrt.git  package/system packag
 rm -rf package/kernel/mac80211   #编译不成功，暂时删除
 #merge_package master https://github.com/immortalwrt/immortalwrt.git  package/kernel  package/kernel/mac80211
 
-rm -rf package/network/utils/iptables
-
 ###################
 
 #四、系统优化########
@@ -412,7 +410,7 @@ sed -i 's/Control/管控/g' package/diy/taskplan/luci-app-taskplan/root/usr/shar
 git clone https://github.com/esirplayground/luci-app-poweroff package/diy/luci-app-poweroff
 sed -i 's/PowerOff/关机/g' package/diy/luci-app-poweroff/luasrc/controller/poweroff.lua
 
-#家长控制（会生成Control管控栏目） #无法运行
+#家长控制（会生成Control管控栏目） #无法运行，需要iptables
 #git clone https://github.com/sirpdboy/luci-app-parentcontrol package/diy/luci-app-parentcontrol
 git clone https://github.com/ilxp/luci-app-parentcontrol package/diy/luci-app-parentcontrol
 sed -i 's/Parent Control/家长控制/g' package/diy/luci-app-parentcontrol/luasrc/controller/parentcontrol.lua
